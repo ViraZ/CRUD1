@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Backbone_recipe</title>
+    <link href="Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+</head>
+<body>
+    <a href="/">Home</a>
+    <section id="newRecipe"></section>
+    <section id="page"></section>
+
+    <script type="text/template" id="newRecipeForm">
+        <h2>Add new recipe</h2>
+        <form name="createRecipe">
+            <input type="text" placeholder="Recipe title" name="title">
+            <input type="text" placeholder="Year" name="year">
+            <input type="text" placeholder="Thumbnail" name="thumbnail">
+
+            <button type="submit">Save Recipe</button>
+        </form>
+    </script>
+
+    <script type="text/template" id="recipeItem">
+        <%= title %>
+        <a href="#getRecipe/<%= _id %>">
+            <img src="<%= thumbnail %>" />
+        </a>
+        <span class="year"><%= year %></span>
+    </script>
+
+    <script type="text/template" id="singleRecipeItem">
+        <span class='delete'>Delete recipe </span>
+        <%= title %><br>
+        <img src="<%= thumbnail %>" />
+        <%= year %><br>
+    </script>
+
+    <script type="text/template" id="singleRecipeItem-CPY">
+        <%= title %><br>
+        <%= year %><br>
+        <%= duration %><br>
+        <%= directors %><br>
+        <%= premiere.country %>, <%= premiere.date %><br>
+        <%= rating.users %>, <%= rating.value %><br>
+        <span>Stars:</span>
+        <ul class="singleGenre genre">
+            <% _.each(stars, function(singleGenre){ %>
+                <li><%= singleGenre %></li>
+            <% }); %>
+        </ul>
+        <span>Writers:</span>
+        <ul class="singleGenre">
+            <% _.each(writers, function(singleWriter){ %>
+                <li>
+                    <%= singleWriter.info %></br>
+                    <%= singleWriter.name %></br>
+                    <%= singleWriter.type %></br>
+                </li>
+            <% }); %>
+        </ul>
+        <span>Genre:</span>
+        <ul class="singleGenre genre">
+            <% _.each(genre, function(singleGenre){ %>
+                <li><%= singleGenre %></li>
+            <% }); %>
+        </ul>
+        <ul class="singleGenre ololo">
+            <% _.each(photos, function(singleGenre){ %>
+             <a class="fancybox" rel="group" href="<%= singleGenre %>"><img src="<%= singleGenre %>" /></a>
+            <% }); %>
+        </ul>
+    </script>
+
+    <!-- Libs -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore.js"></script>
+    <script src="bower_components/backbone.js"></script>
+
+    <script src="js/models.js"></script>
+    <script src="js/collections.js"></script>
+
+    <script src="js/views/recipesListView.js"></script>
+    <script src="js/views/recipeView.js"></script>
+    <script src="js/views/singleRecipeView.js"></script>
+    <script src="js/views/newRecipeView.js"></script>
+
+    <script src="js/routers.js"></script>
+
+    <script src="js/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+        });
+    </script>
+</body>
+</html>
